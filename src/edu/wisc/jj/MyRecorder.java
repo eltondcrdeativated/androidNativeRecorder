@@ -64,7 +64,7 @@ public class MyRecorder extends Activity implements OnClickListener,
 	PendingIntent pi;
 	BroadcastReceiver br;
 	final private long ONE_SECOND = 1000;
-	private final long RECORD_TIME = ONE_SECOND * 10;
+	private final long RECORD_TIME = ONE_SECOND * 40;
 
 	AlarmManager am;
 	PcmRecorder recorderInstance = null;
@@ -114,6 +114,11 @@ public class MyRecorder extends Activity implements OnClickListener,
 					Thread.sleep(3000);
 				} catch (InterruptedException e) {
 				}
+				NativeRecorder nRecorder = new NativeRecorder(curChar
+						+ String.valueOf(this.charIndex[v.getId()]),
+						getRecordCommands(),this.getApplicationContext());
+				th = new Thread(nRecorder);
+				th.start();
 				textView.setText("start recording");
 				sensorReg(true);
 				// schedule ending event
@@ -123,11 +128,6 @@ public class MyRecorder extends Activity implements OnClickListener,
 						+ this.charIndex[v.getId()]);
 //				sendNativeCmd(curChar
 //						+ String.valueOf(this.charIndex[v.getId()]));
-				NativeRecorder nRecorder = new NativeRecorder(curChar
-						+ String.valueOf(this.charIndex[v.getId()]),
-						getRecordCommands());
-				th = new Thread(nRecorder);
-				th.start();
 				// recorderInstance.setRecording(true);
 			}
 		}
@@ -286,7 +286,7 @@ public class MyRecorder extends Activity implements OnClickListener,
 				mAsyncTask.execute();
 				Log.d(this.toString(),
 						"record time elapsed. stopped recording. unregisted sensor");
-				Toast.makeText(context, "Rise and Shine! Finished collecting",
+				Toast.makeText(context, "sensor finished collecting",
 						Toast.LENGTH_SHORT).show();
 			}
 		};

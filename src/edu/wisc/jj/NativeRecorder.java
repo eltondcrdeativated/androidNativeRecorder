@@ -5,16 +5,31 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
+import android.app.Activity;
+import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 
-public class NativeRecorder implements Runnable {
+public class NativeRecorder extends Activity implements Runnable {
 	private String fileName;
 	private List<String> script;
-	
-	public NativeRecorder(String mName, List<String> cmd){
+	private Handler toastHandler;
+	private Runnable toastRunnable;
+	private Context mContext;
+
+	public NativeRecorder(String mName, List<String> cmd, Context context){
 		this.fileName=mName;
 		this.script=cmd;
+		this.mContext=context;
 		Log.d("nativeRecorder", "constructed a native recorder. scripts: "+cmd.toString());
+		toastHandler = new Handler();
+		toastRunnable = new Runnable() {
+			public void run() {
+				Toast.makeText(mContext,"audio finished recording",Toast.LENGTH_SHORT).show();
+			}
+		};
 	}
 
 	@Override
@@ -30,6 +45,7 @@ public class NativeRecorder implements Runnable {
 			for (String mLine : this.script) {
 				if (mLine.contains("alsa_aplay")) {
 					mLine += " /sdcard/nativeRecorder/" + fileName + ".wav\n";
+					Log.d(this.toString(), "executing cmd: " + mLine);
 					os.writeBytes(mLine);
 					os.flush();
 					break;
@@ -60,11 +76,14 @@ public class NativeRecorder implements Runnable {
 			reader.close();
 			// p.waitFor();
 			// p.destroy();
-//			Toast.makeText(this, "audio finished", Toast.LENGTH_SHORT).show();
+			// Toast.makeText(this, "audio finished",
+			// Toast.LENGTH_SHORT).show();
 			Log.d(this.toString(), "audio thread finished");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);
-		}		
+		} finally {
+			toastHandler.post(toastRunnable);
+		}
 	}
 }

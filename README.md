@@ -13,7 +13,7 @@ Usage:
 
 start audio recording by clicking 'a' to 'z' buttons, not the ('start-only recording audio') button. 
 
-When finishing recording, a notification will pop up and the result file will be stored at: /sdcard/nativeRecorder/
+When finishing recording (recording time is set by program, not user, default is 5 seconds) , a notification will pop up and the result file will be stored at: /sdcard/nativeRecorder/
 with the file name same as the button pressed ('a' to 'z')
 
 2. To exit the program:

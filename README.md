@@ -1,10 +1,12 @@
 This is an android app that can do stereo recording on Galaxy nexus 4.2.2
+===========================================================================================================
 
 Dependency:
 1. rooted phone
 2. busybox: https://play.google.com/store/apps/details?id=stericson.busybox&hl=en
 3. alsa-mixer: https://play.google.com/store/apps/details?id=com.skvalex.alsamixer&hl=en
 
+===========================================================================================================
 Usage:
 
 1. for simply stereo audio recording:
@@ -26,9 +28,10 @@ the above command uses hardware 0,1 to record 2 channels (-c), at 48000Hz (-r), 
 Details on formats of command above, refer to:
 http://linux.die.net/man/1/aplay
 
-
+===============================================================================================================
 Default Recording Settings (IMPORTANT):
 2 channels, 5 seconds, little endian for output .wav file
 
+===============================================================================================================
 How it works:
 This app essentially issues alsa_amixer commands to bypass android OS and HAL to enable recording directly

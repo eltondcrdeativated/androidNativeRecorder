@@ -36,6 +36,10 @@ Default Recording Settings (IMPORTANT):
 How it works:
 This app essentially issues alsa_amixer commands to bypass android OS and HAL to enable recording directly
 
+===============================================================================================================
+Updates:
+I'm planning on making it user-friendly (terrible right now).... need some time... We'll see
+
 ================================================================================================================
 Contact Author:
 JJ Wang

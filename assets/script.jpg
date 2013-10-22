@@ -1,6 +1,6 @@
-/system/xbin/alsa_amixer set 'AMIC UL' 120
+/system/xbin/alsa_amixer set 'AMIC UL' 130
 /system/xbin/alsa_amixer set 'MUX_UL11' 'AMic0'
 /system/xbin/alsa_amixer set 'MUX_UL10' 'AMic1'
 /system/xbin/alsa_amixer set 'Analog Left' 'Main Mic'
 /system/xbin/alsa_amixer set 'Analog Right' 'Sub Mic'
-/system/xbin/alsa_aplay -C -D hw:0,1 -c 2 -r 48000 -d 5 -f S16_LE
+/system/xbin/alsa_aplay -C -D hw:0,1 -c 2 -r 48000 -d 60 -f S16_LE

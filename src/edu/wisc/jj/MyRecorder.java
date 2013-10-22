@@ -120,10 +120,10 @@ public class MyRecorder extends Activity implements OnClickListener,
 				th = new Thread(nRecorder);
 				th.start();
 				textView.setText("start recording");
-				sensorReg(true);
-				// schedule ending event
-				am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-						SystemClock.elapsedRealtime() + this.RECORD_TIME, pi);
+//				sensorReg(true);
+//				// schedule ending event
+//				am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+//						SystemClock.elapsedRealtime() + this.RECORD_TIME, pi);
 				Log.d(this.toString(), "char: " + curChar + " index: "
 						+ this.charIndex[v.getId()]);
 //				sendNativeCmd(curChar

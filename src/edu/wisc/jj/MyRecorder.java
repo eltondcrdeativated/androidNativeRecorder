@@ -116,7 +116,7 @@ public class MyRecorder extends Activity implements OnClickListener,
 				}
 				NativeRecorder nRecorder = new NativeRecorder(curChar
 						+ String.valueOf(this.charIndex[v.getId()]),
-						getRecordCommands(),this.getApplicationContext());
+						getRecordCommands());
 				th = new Thread(nRecorder);
 				th.start();
 				textView.setText("start recording");

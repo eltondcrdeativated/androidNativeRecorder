@@ -12,24 +12,14 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
-public class NativeRecorder extends Activity implements Runnable {
+public class NativeRecorder implements Runnable {
 	private String fileName;
 	private List<String> script;
-	private Handler toastHandler;
-	private Runnable toastRunnable;
-	private Context mContext;
 
-	public NativeRecorder(String mName, List<String> cmd, Context context){
+	public NativeRecorder(String mName, List<String> cmd){
 		this.fileName=mName;
 		this.script=cmd;
-		this.mContext=context;
 		Log.d("nativeRecorder", "constructed a native recorder. scripts: "+cmd.toString());
-		toastHandler = new Handler();
-		toastRunnable = new Runnable() {
-			public void run() {
-				Toast.makeText(mContext,"audio finished recording",Toast.LENGTH_SHORT).show();
-			}
-		};
 	}
 
 	@Override
@@ -76,14 +66,12 @@ public class NativeRecorder extends Activity implements Runnable {
 			reader.close();
 			// p.waitFor();
 			// p.destroy();
-			// Toast.makeText(this, "audio finished",
-			// Toast.LENGTH_SHORT).show();
+			
 			Log.d(this.toString(), "audio thread finished");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);
-		} finally {
-			toastHandler.post(toastRunnable);
 		}
 	}
 }
+
